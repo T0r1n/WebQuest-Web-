@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>K-Quest</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/interaction.js"></script>
+</head>
+
+<body>
+    <!--Оформление заднего плана-->
+    <div style="position: relative; width: 1920px; margin: 0 auto 0 auto;">
+        <svg height="800" width="1600" style="position: absolute; left: 1100;">
+            <defs>
+                <linearGradient id="ellipseGrad1" x1="26%" y1="10%" x2="97.85%" y2="50%">
+                    <stop offset="26%" style="stop-color:rgba(125, 45, 255, 0.8); stop-opacity:1" />
+                    <stop offset="97.85%" style="stop-color:rgb(0, 255, 71, 0.8); stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <ellipse cx="650" cy="0" rx="400px" ry="550px" fill="url(#ellipseGrad1)"
+                style="position: absolute; filter: blur(100px);" />
+        </svg>
+
+        <svg height="1250" width="1300" style="position: absolute; left: -400px; top: -50px;">
+            <defs>
+                <linearGradient id="ellipseGrad2" x1="17.32%" y1="25%" x2="76.79%" y2="100%">
+                    <stop offset="17.32%" style="stop-color:rgba(13, 255, 255, 0.75); stop-opacity:1" />
+                    <stop offset="76.79%" style="stop-color:rgb(0, 255, 71, 0.75); stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <ellipse cx="650" cy="600" rx="325px" ry="300px" fill="url(#ellipseGrad2)" style="filter: blur(150px);" />
+        </svg>
+
+        <svg height="1500" width="1600" style="position: absolute; left: 600px; top: 800px;">
+            <defs>
+                <linearGradient id="ellipseGrad3" x1="30%" y1="10%" x2="100%" y2="100%">
+                    <stop offset="25%" style="stop-color:rgba(107, 243, 248, 0.8); stop-opacity:1" />
+                    <stop offset="10%" style="stop-color:rgb(125, 45, 255, 0.44); stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <ellipse cx="900" cy="750" rx="400px" ry="400px" fill="url(#ellipseGrad3)" style="filter: blur(150px);" />
+        </svg>
+
+        <svg height="1700" width="2550" style="position: absolute; left: -1200px; top: 700px;">
+            <defs>
+                <linearGradient id="ellipseGrad4" x1="30%" y1="10%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:rgba(125, 45, 255, 0.75); stop-opacity:1" />
+                    <stop offset="10%" style="stop-color:rgb(0, 255, 71, 0.75); stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <ellipse cx="1300" cy="1000" rx="800px" ry="250px" fill="url(#ellipseGrad4)" style="filter: blur(150px);" />
+        </svg>
+    </div>
+
+    <!--Основная часть страницы-->
+    <div id="wrapper">
+        <!--Верхняя панель-->
+        <header id="header">
+            <!--Декоративный эллипс-->
+            <div style="width: 1152px; margin: 0 auto 0 auto;">
+                <div style="position: absolute;">
+                    <svg height="250" width="300"
+                        style="position: relative; transform: rotate(-60deg); left: 5px; top: -165px">
+                        <defs>
+                            <linearGradient id="ellipseGrad5" x1="100.0%" y1="100%" x2="0%" y2="100%">
+                                <stop offset="60.32%" style="stop-color:#0038FF; stop-opacity:1" />
+                                <stop offset="0.96%" style="stop-color:rgb(13, 240, 255, 0.83); stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <ellipse cx="50" cy="40" rx="25px" ry="14px" fill="url(#ellipseGrad5)"
+                            style="filter: blur(10px);" />
+                    </svg>
+                </div>
+
+                <!--Сама шапка-->
+                <p style="position: relative; font-size: 24px; font-weight: 700; width: 200px; top: -10px; left: 22px; cursor: pointer;"
+                    onclick="returnToMain()">
+                    K-quest</p>
+                <img src="images/profileicon.png" width="50px" height="50px"
+                    style="position: relative; top: -76px; left: 1064px; cursor: pointer;" onclick="profileButton()">
+                <a id="descLink" href="#description"
+                    style="position: relative; color: white; text-decoration: none; font-size: 20px; top: -92px; left: 820px;">Описание</a>
+            </div>
+        </header>
+
+        <!--Тело-->
+        <main id="main">
+            <!--Выбор режима-->
+            <div class="questmenus">
+                <!--Выбор фразмера квеста для создания-->
+                <div class="questtypepick">
+                    <h1 style="color: white; margin-bottom: 0;">Создай свой квест!</h1>
+                    <h4 style="color: white; margin: 0; font-weight: 100;">Выбери количество комнат</h4>
+
+                    <div style="position: relative; width: 100%; margin-top: 48px;" id="roomCards">
+                        <img src="images/roomcard3.png" width="192px" height="256px"
+                            style="position: relative; left: 32px; box-shadow: 0px 4px 40px 4px rgba(0, 0, 0, 0.15); z-index: 0;"
+                            id="room1" onmouseenter="roomFocus(1)" onmouseleave="roomFocusReset()"
+                            onclick="openCreateQuest()">
+                        <img src="images/roomcard1.png" width="208px" height="280px"
+                            style="position: relative; left: 0px; top: 11px; box-shadow: 0px 4px 40px 4px rgba(0, 0, 0, 0.15); z-index: 1;"
+                            id="room2" onmouseenter="roomFocus(2)" onmouseleave="roomFocusReset()"
+                            onclick="openCreateQuest()">
+                        <img src="images/roomcard2.png" width="192px" height="256px"
+                            style="position: relative; left: -32px; box-shadow: 0px 4px 40px 4px rgba(0, 0, 0, 0.15); z-index: 0;"
+                            id="room3" onmouseenter="roomFocus(3)" onmouseleave="roomFocusReset()"
+                            onclick="openCreateQuest()">
+                    </div>
+
+                    <div id="roomcardIndicator" style="margin-top: 48px;">
+                        <input type="radio" disabled id="indicatorRoom1">
+                        <input type="radio" checked id="indicatorRoom2">
+                        <input type="radio" disabled id="indicatorRoom3">
+                    </div>
+                </div>
+
+                <!--Присоединение к квесту-->
+                <div class="joinquestbackground"></div>
+                <div class="joinquest">
+                    <h1 style="font-size: 64px;">K-quest</h1>
+                    <p style="width: 572px; font-size: 20px">
+                        Увлекательные знания в формате квеста!
+                        <br> <br>
+                        Используй свою интуицию, логику и знания, чтобы найти ответы на вопросы. Помогает приобрести
+                        новые
+                        знания и поднять настроение.
+                    </p>
+                    <input type="text" name="questId" placeholder="Введите номер игры"
+                        style="width: 355px; height: 44px; font-size: 24px; border-radius: 10px; border: none;">
+                    <button style="width: 170px; height: 46px; margin-left: 3%;">Войти в урок</button>
+                </div>
+            </div>
+
+            <!--Раздел описания-->
+            <div style="position: relative; width: 1000px; top: 400px; margin: 0 auto">
+                <div class="descriptionbackground"></div>
+                <div class="description" id="description">
+                    <h1 style="color: white; text-align: center; font-size: 48px; width: 800px; margin: 0 auto 0 auto;">
+                        Описание</h1>
+                    <!--Текст описания должен находиться внутрни тега <p>; чтобы изменить высоту фонового затенения описания
+                            измените параметр height в стиле descriptionbackground. Чем выше значение - тем дальше вниз уходит затенение-->
+                    <p
+                        style="color: white; text-align: center; font-size: 20px; width: 800px; margin: 0 auto 0 auto; white-space: normal;">
+                        [Тестовый текст] Эффе́кт
+                        Вави́лова —
+                        Черенко́ва, эффе́кт
+                        Черенко́ва, излуче́ние Вави́лова — Черенко́ва, черенко́вское излуче́ние — свечение, вызываемое в
+                        прозрачной среде заряженной частицей, движущейся со скоростью, превышающей фазовую скорость
+                        распространения света в этой среде[1].
+
+                        В 1958 году Павел Черенков, Игорь Тамм и Илья Франк были удостоены Нобелевской премии по физике
+                        с
+                        формулировкой: «За открытие и истолкование эффекта Черенкова».
+
+                        Детекторы, регистрирующие черенковское излучение, широко используются в физике высоких энергий
+                        для
+                        регистрации релятивистских частиц и определения их скоростей и направлений движения. Если
+                        известна
+                        масса порождающих черенковское излучение частиц, то сразу определяется их кинетическая энергия.
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <!--Меню профиля-->
+        <div id="profile">
+            <!--Панель навигации-->
+            <div class="profileNavigation">
+                <div style="width: 100%; height: 100%; padding: 48px 0 0 32px">
+                    <!--Секция настройки профиля обрабатывается по-особенному, поэтому не используется класс profileNavSeciton-->
+                    <div style="width: fit-content; margin-bottom: 64px; cursor: pointer" onclick="openEditProfile()">
+                        <h2 class="profileNavLabel">Ник
+                            пользователя</h2>
+                        <img src="images/editprofileicon.png" class="profileSectionIcon">
+                    </div>
+
+                    <div>
+                        <div class="profileNavSection" onclick="openCompletedQuests()">
+                            <a class="profileNavLabel" style="font-size: 20px; font-weight: 100;">Пройденные квесты</a>
+                        </div>
+
+
+                        <div class="profileNavSection" onclick="openCreatedQuests()">
+                            <a class="profileNavLabel" style="font-size: 20px; font-weight: 100;">Созданные квесты</a>
+                            <img src="images/addicon.png" class="profileSectionIcon">
+                        </div>
+                    </div>
+
+                    <div style="position: relative; top: 500px; cursor: pointer" onclick="signOut()">
+                        <img src="images/signouticon.png" style="width: 28px; height: 28px">
+                    </div>
+                </div>
+            </div>
+
+            <!--Панель, в которой отображаются выбранные меню-->
+            <div id="profileMenu">
+                <!--Изменение данных профиля-->
+                <div id="editProfile">
+                    <h3 class="fieldLabel">Ник</h3>
+                    <input class="textField" type="text" name="nickname" placeholder="Введите ник">
+
+                    <div style="margin-top: 32px;">
+                        <div style="display: inline-block">
+                            <h3 class=" fieldLabel">Логин</h3>
+                            <input class="textField" type="text" name="login" placeholder="Введите логин">
+                        </div>
+                        <div style="display: inline-block; margin-left: 96px">
+                            <h3 class="fieldLabel">Пароль</h3>
+                            <input class="textField" type="text" name="password" placeholder="Введите пароль">
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 32px;">
+                        <div style="display: inline-block">
+                            <h3 class=" fieldLabel">Секретный вопрос</h3>
+                            <select class="textField" name="securityQuestion[]">
+                                <option value="" disabled selected>Выберите секретный вопрос</option>
+                                <option value="1">Вопрос 1</option>
+                                <option value="2">Вопрос 2</option>
+                                <option value="3">Вопрос 3</option>
+                            </select>
+                        </div>
+                        <div style="display: inline-block; margin-left: 96px">
+                            <h3 class="fieldLabel">Ответ на секретный вопрос</h3>
+                            <input class="textField" type="text" name="answer" placeholder="Введите ответ на вопрос">
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 64px">
+                        <button
+                            style="width: 256px; height: 48px; background: white; color: black; border-radius: 25px;">Сохранить
+                            изменения</button>
+                        <a style="margin-left: 36px; font-size: 20px">Удалить аккаунт</a>
+                    </div>
+                </div>
+
+                <!--Пройденные квесты-->
+                <div id="completedQuests">
+                    <div id="questBlock">
+                        <a class="questBlockTitle">Квест "номер 1"</a>
+                    </div>
+
+                    <div id="questBlock">
+                        <a class="questBlockTitle">Квест "номер 2"</a>
+                    </div>
+
+                    <div id="questBlock">
+                        <a class="questBlockTitle">Квест "номер 3"</a>
+                    </div>
+
+                    <div id="questBlock">
+                        <a class="questBlockTitle">Квест "номер 4"</a>
+                    </div>
+                </div>
+
+                <!--Созданные квесты-->
+                <div id="createdQuests">
+                    <div id="questBlock">
+                        <a class="questBlockTitle">Квест "номер 1"</a>
+                    </div>
+
+                    <div id="questBlock">
+                        <a class="questBlockTitle">Квест "номер 2"</a>
+                    </div>
+
+                    <div id="questBlock">
+                        <a class="questBlockTitle">Квест "номер 3"</a>
+                    </div>
+
+                    <div id="questBlock">
+                        <a class="questBlockTitle">Квест "номер 4"</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Меню создания квеста-->
+        <div id="create">
+            <!--Первое окно-->
+            <div id="questInfo">
+                <div style="display: inline-block; margin: 40px 0 0 64px;">
+                    <h2 style="margin: 0 0">Создание нового урока</h2>
+                    <input class="textField" name="questtitle" placeholder="Введите название урока"
+                        style="width: 560px; height: 40px; font-size: 20px; margin: 12px 0 48px 0">
+                    <textarea class="textField" name="questdescription" placeholder="Введите описание урока"
+                        style="width: 560px; height: 250px; font-size: 24px; margin: 0 0 96px 0; resize: none"></textarea>
+                </div>
+            </div>
+
+            <!--Второе окно-->
+            <div id="taskInfo">
+                <div style="display: inline-block; margin: 40px 0 0 64px;">
+                    <h2 style="margin: 0 0">Загрузите задания</h2>
+
+                    <div id="taskLine">
+
+                    </div>
+                    <textarea class="textField" name="taskdescription" placeholder="Введите текст задания"
+                        style="width: 560px; height: 108px; font-size: 24px; margin: 0 0 48px 0; resize: none"></textarea>
+
+                    <h3 style="margin: 0 0">Подсказка</h3>
+                    <textarea class="textField" name="taskhint" placeholder="Введите текст подсказки"
+                        style="width: 560px; height: 108px; font-size: 24px; margin: 8px 0 24px 0; resize: none"></textarea>
+
+                    <a style="font-size: 20px">Прикрепить файл</a>
+
+                    <h3 style="margin: 24px 0 12px 0">Ответ</h3>
+                    <textarea class="textField" name="tasksolution" placeholder="Введите текст ответа"
+                        style="width: 560px; height: 108px; font-size: 24px; margin: 8px 0 36px 0; resize: none"></textarea>
+
+                    <button style="display: block; width: 156px; height: 40px; margin: 0 auto 24px auto; border-radius: 5px; background: linear-gradient(180deg, rgba(36, 184, 86, 0.47) 0%, #142E7D 0.02%, #146A9A 159.17%);
+                        box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.15);">Далее</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Всплывающий сайдбар авторизации, вынесен за пределы обёртки потому что не должен выравниваться по центру-->
+    <div class="auth" id="auth">
+
+        <!--Содержание сайдбара-->
+        <div style="position: relative; width: 60%; white-space: nowrap; top: 30vh; left: 5%; z-index: 2;">
+
+            <!--Поля ввода логина и пароля видны всегда, а вход и регистрация взаимоисключающие-->
+            <a class="authModeSwitch" id="log" onclick="authSwitch('log')">ВХОД</a>
+            <a class="authModeSwitch" style="color: #CECECE;" id="reg" onclick="authSwitch('reg')">РЕГИСТРАЦИЯ</a>
+
+            <h3 class="authFieldLabel">Логин</h3>
+            <input class="authTextField" type="text" name="login" placeholder="Введите логин">
+
+            <h3 class="authFieldLabel">Пароль</h3>
+            <input class="authTextField" type="text" name="password" placeholder="Введите пароль">
+
+            <!--Блок входа-->
+            <div class="authLogin" id="authLogin">
+                <a style="position: relative; display: block; width: fit-content; margin: 0 auto 0 auto; font-size: 1.5vh; text-decoration: none; color: white; left: 5%;"
+                    href="https://storage.vsemayki.ru/images/0/2/2920/2920557/previews/people_7_postcard_a6_front_white_500.jpg"
+                    target="_blank">Забыли
+                    пароль?</a>
+
+                <button
+                    style="position: relative; display: block; width: 15vh; height: 4vh; margin: 2vh auto 0 auto; font-size: 2vh; left: 5%;"
+                    onclick="signIn(); openProfile()">ВОЙТИ</button>
+            </div>
+
+            <!--Блок регистрации-->
+            <div class="authRegister" id="authRegister">
+                <h3 class="authFieldLabel">Секретный вопрос</h3>
+                <select class="authTextField" name="securityQuestion[]">
+                    <option value="" disabled selected>Выберите секретный вопрос</option>
+                    <option value="1">Вопрос 1</option>
+                    <option value="2">Вопрос 2</option>
+                    <option value="3">Вопрос 3</option>
+                </select>
+
+                <h3 class="authFieldLabel">Ответ на секретный вопрос</h3>
+                <input class="authTextField" type="text" name="answer" placeholder="Введите ответ на вопрос">
+
+                <button
+                    style="position: relative; display: block; width: 30vh; height: 4vh; margin: 2vh auto 0 auto; font-size: 2vh; left: 5%;"
+                    onclick="register(); openProfile()">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+            </div>
+        </div>
+
+        <!--Декоративный эллипс-->
+        <svg viewBox="0 6 100 140" style="position: fixed; z-index: 1; top: -10%;">
+            <defs>
+                <linearGradient id="ellipseGrad6" x1="100.0%" y1="100%" x2="0%" y2="100%">
+                    <stop offset="-63.06%" style="stop-color:rgba(125, 45, 255, 0.75); stop-opacity:1" />
+                    <stop offset="-13.7%" style="stop-color:rgba(0, 255, 71, 0.75); stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <ellipse cx="30" cy="100" rx="100" ry="25" style="rotate: -30deg; filter: blur(20px);"
+                fill="url(#ellipseGrad6)" />
+        </svg>
+    </div>
+
+    <!--Затенение фона для окна авторизации-->
+    <div class="authbackground" id="authbg" onclick="closeAuth()"></div>
+</body>
+
+</html>
